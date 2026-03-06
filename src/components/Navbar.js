@@ -1,13 +1,12 @@
 import { FaCar, FaCartPlus, FaSearch, FaShoppingCart } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 function Navbar() {
     return (
-
         <>
             <nav className="border-b-2 p-4 flex justify-between items-center border-black ">
                 <ul className="flex gap-20">
-                    <li>Home</li>
-                    <li>About</li>
+                    <Link to="/">Home</Link>
+                    <Link to="/about">About</Link>
                     <li>News</li>
                 </ul>
                 <a>mera</a>
