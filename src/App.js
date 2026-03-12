@@ -8,6 +8,7 @@ import About from "./components/About";
 function App() {
   return (
     <div className="App">
+
       <Navbar />
 
       <Routes>
@@ -21,8 +22,7 @@ function App() {
           }
         />
         <Route path="/about" element={<About />} />
-        <Route path="/selected" element={<SelectedCollection />} />
-      </Routes>
+        <Route path="/collection/:collectionName/:collectionNumber" element={<SelectedCollection />} />      </Routes>
 
     </div>
   );
