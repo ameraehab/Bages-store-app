@@ -1,7 +1,14 @@
-body{
-    height: 1200px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* لمنع السكرول الأفقي */
+}
 
 .card:hover {
   border: 1px solid rgb(246, 242, 242);
