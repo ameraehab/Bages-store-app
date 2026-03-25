@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { FiShoppingCart } from "react-icons/fi"; // استدعاء أيقونة الكارت
+import { FiShoppingCart } from "react-icons/fi";
 import bages from "../bags.json";
 
 function SelectedCollection() {
@@ -9,12 +9,12 @@ function SelectedCollection() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
 
-    // جلب المنتجات الخاصة بالكوليكشن
+
     const collectionBags = bages.filter(
         (bag) => bag.collectionId == collectionNumber
     );
 
-    // حساب المنتجات للصفحة الحالية
+
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentBags = collectionBags.slice(
         startIndex,
