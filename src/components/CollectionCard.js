@@ -1,19 +1,15 @@
-import collection1 from "../assets/images/collection1.jpg";
-import collection2 from "../assets/images/collection2.jpg";
-import collection3 from "../assets/images/collection3.jpg";
-import collection4 from "../assets/images/collection4.jpg";
-import collection5 from "../assets/images/collection5.jpg";
+
 import { Link } from "react-router-dom";
 
 
 
 function CollectionCard({ showAll }) {
     const collections = [
-        { id: 1, name: "Classic Elegance", image: collection1 },
-        { id: 2, name: "Evening Glam", image: collection2 },
-        { id: 3, name: "Urban Chic", image: collection3 },
-        { id: 4, name: "Travel Buddy", image: collection4 },
-        { id: 5, name: "Jeune Premier", image: collection5 },
+        { id: 1, name: "Classic Elegance", image: "/images/collection1.jpg" },
+        { id: 2, name: "Evening Glam", image: "/images/collection2.jpg" },
+        { id: 3, name: "Urban Chic", image: "/images/collection3.jpg" },
+        { id: 4, name: "Travel Buddy", image: "/images/collection4.jpg" },
+        { id: 5, name: "Jeune Premier", image: "/images/collection5.jpg" },
     ];
     const visibleCollection = showAll ? collections : collections.slice(0, 4);
 
