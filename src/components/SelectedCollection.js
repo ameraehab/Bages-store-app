@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { FiShoppingCart } from "react-icons/fi";
 import bages from "../bags.json";
+import { FaCartPlus } from "react-icons/fa6";
+import CartList from "./CartList";
+
+
 
 // ✅ مكون الـ Loading Spinner الأصلي (من Uiverse.io) - محول لـ JSX
 function ImageLoader() {
@@ -49,13 +52,17 @@ function ProductImage({ src, alt, className }) {
     );
 }
 
+
 function SelectedCollection() {
     const { collectionName, collectionNumber } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
 
     const itemsPerPage = 10;
-
+    const AddBage = (bageDetails) => {
+        setBag(prev => [...prev, bageDetails]);
+        console.log(bage);
+    }
     // محاكاة تحميل البيانات الأولية
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -76,7 +83,7 @@ function SelectedCollection() {
     if (loading) {
         return (
             <div className="p-5 min-h-[400px] flex items-center justify-center  h-screen">
-                <div class="loadingio-spinner-spinner-977el9wwy2v"><div class="ldio-4j5ay0xf86g">
+                <div className="loadingio-spinner-spinner-977el9wwy2v"><div className="ldio-4j5ay0xf86g">
                     <div></div><div></div><div></div><div></div><div></div><div></div>
                     <div></div><div></div><div></div><div></div><div></div><div></div>
                 </div>
@@ -115,13 +122,13 @@ function SelectedCollection() {
                         <h3 className="font-semibold mt-2">{bag.title}</h3>
                         <p className="text-orange-700 font-bold">{bag.price}$</p>
 
-                        {/* زر Add to Cart */}
                         <button
                             className="absolute top-4 right-4 bg-orange-600 text-white p-2 rounded-full hover:bg-orange-700 transition-colors z-20"
                             title="Add to Cart"
-                            onClick={() => alert(`Added ${bag.title} to cart`)}
+                            onClick={() => AddBage(bag)}
                         >
-                            <FiShoppingCart size={20} />
+                            <FaCartPlus size={20} />
+
                         </button>
                     </div>
                 ))}
@@ -146,7 +153,9 @@ function SelectedCollection() {
                     )}
                 </div>
             )}
+
         </div>
+
     );
 }
 
