@@ -5,11 +5,11 @@ import SelectedCollection from "./components/SelectedCollection"
 import "./App.css"
 import { Routes, Route } from "react-router-dom";
 import About from "./components/About";
+import CartProvider from "./Context/CartContext";
 function App() {
   return (
     <div className="App">
 
-      <Navbar />
 
       <Routes>
         <Route
@@ -22,7 +22,14 @@ function App() {
           }
         />
         <Route path="/about" element={<About />} />
-        <Route path="/collection/:collectionName/:collectionNumber" element={<SelectedCollection />} />      </Routes>
+        <CartProvider>
+          <Navbar />
+
+          <Route path="/collection/:collectionName/:collectionNumber" element={<SelectedCollection />} />
+
+        </CartProvider>
+
+      </Routes>
 
     </div>
   );
