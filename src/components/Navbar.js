@@ -1,5 +1,6 @@
 import { FaCar, FaCartPlus, FaSearch, FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import CartList from "./CartList";
 function Navbar() {
     return (
         <>
@@ -11,7 +12,7 @@ function Navbar() {
                 </ul>
                 <a>mera</a>
                 <div className="flex items-center gap-3 ">
-                    <FaShoppingCart className="text-xl " />
+                    <CartList />
                     <div className="relative w-64">
                         <FaSearch className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400" />
                         <input
