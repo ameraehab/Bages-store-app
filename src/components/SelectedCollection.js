@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import bages from "../bags.json";
 import { FaCartPlus } from "react-icons/fa6";
-import CartList from "./CartList";
-
-
+import { useContext } from "react";
+import { CartContext } from "../Context/CartContext";
 
 // ✅ مكون الـ Loading Spinner الأصلي (من Uiverse.io) - محول لـ JSX
 function ImageLoader() {
@@ -52,17 +51,13 @@ function ProductImage({ src, alt, className }) {
     );
 }
 
-
 function SelectedCollection() {
     const { collectionName, collectionNumber } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
-
+    const { addToCart } = useContext(CartContext);
     const itemsPerPage = 10;
-    const AddBage = (bageDetails) => {
-        setBag(prev => [...prev, bageDetails]);
-        console.log(bage);
-    }
+
     // محاكاة تحميل البيانات الأولية
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -125,7 +120,7 @@ function SelectedCollection() {
                         <button
                             className="absolute top-4 right-4 bg-orange-600 text-white p-2 rounded-full hover:bg-orange-700 transition-colors z-20"
                             title="Add to Cart"
-                            onClick={() => AddBage(bag)}
+                            onClick={() => addToCart(bag)}
                         >
                             <FaCartPlus size={20} />
 
