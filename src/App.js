@@ -6,32 +6,37 @@ import "./App.css"
 import { Routes, Route } from "react-router-dom";
 import About from "./components/About";
 import CartProvider from "./Context/CartContext";
+import CartList from "./components/CartList";
+
 function App() {
   return (
-    <div className="App">
+    <CartProvider>
+
+      <div className="App">
+        <Navbar />
 
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Carousel />
-              <ProductsList />
-            </>
-          }
-        />
-        <Route path="/about" element={<About />} />
-        <CartProvider>
-          <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Carousel />
+                <ProductsList />
+              </>
+            }
+          />
+          <Route path="/about" element={<About />} />
 
           <Route path="/collection/:collectionName/:collectionNumber" element={<SelectedCollection />} />
 
-        </CartProvider>
+          <Route path="/cart" element={<CartList />} />
 
-      </Routes>
+        </Routes>
 
-    </div>
+      </div>
+    </CartProvider>
+
   );
 }
 
