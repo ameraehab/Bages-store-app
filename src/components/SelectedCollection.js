@@ -56,6 +56,8 @@ function SelectedCollection() {
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const { addToCart } = useContext(CartContext);
+    const { showAlert } = useContext(CartContext);
+
     const itemsPerPage = 10;
 
     // محاكاة تحميل البيانات الأولية
