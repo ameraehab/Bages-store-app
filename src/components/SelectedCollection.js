@@ -5,7 +5,6 @@ import { FaCartPlus } from "react-icons/fa6";
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
 
-// ✅ مكون الـ Loading Spinner الأصلي (من Uiverse.io) - محول لـ JSX
 function ImageLoader() {
     return (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded z-10">
@@ -19,7 +18,6 @@ function ImageLoader() {
     );
 }
 
-// ✅ مكون الصورة مع Spinner مدمج (لكل منتج على حدة)
 function ProductImage({ src, alt, className }) {
     const [isLoaded, setIsLoaded] = useState(false);
     const [hasError, setHasError] = useState(false);
@@ -55,12 +53,10 @@ function SelectedCollection() {
     const { collectionName, collectionNumber } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
-    const { addToCart } = useContext(CartContext);
-    const { showAlert } = useContext(CartContext);
+    const { addToCart, showAlert } = useContext(CartContext);
 
     const itemsPerPage = 10;
 
-    // محاكاة تحميل البيانات الأولية
     useEffect(() => {
         const timer = setTimeout(() => {
             setLoading(false);
@@ -76,7 +72,6 @@ function SelectedCollection() {
     const currentBags = collectionBags.slice(startIndex, startIndex + itemsPerPage);
     const totalPages = Math.ceil(collectionBags.length / itemsPerPage);
 
-    // عرض لودر الصفحة الرئيسي
     if (loading) {
         return (
             <div className="p-5 min-h-[400px] flex items-center justify-center  h-screen">
@@ -109,7 +104,6 @@ function SelectedCollection() {
                         key={bag.id}
                         className="shadow rounded p-3 hover:shadow-lg hover:scale-105 transition-transform duration-300 relative"
                     >
-                        {/* ✅ استخدام ProductImage مع الـ Spinner الأصلي */}
                         <ProductImage
                             src={bag.image}
                             alt={bag.title}
