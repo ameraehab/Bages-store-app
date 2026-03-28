@@ -7,12 +7,12 @@ import { Routes, Route } from "react-router-dom";
 import About from "./components/About";
 import CartProvider from "./Context/CartContext";
 import CartList from "./components/CartList";
-
 function App() {
+
   return (
     <CartProvider>
-
       <div className="App">
+
         <Navbar />
 
 
