@@ -133,3 +133,17 @@ body {
 .ldio-4j5ay0xf86g div {
  box-sizing: content-box;
 }
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.4s ease forwards;
+}
