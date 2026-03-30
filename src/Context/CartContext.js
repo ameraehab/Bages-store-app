@@ -12,11 +12,22 @@ function CartProvider({ children }) {
         return savedCart ? JSON.parse(savedCart) : [];
     });
 
+
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(bage));
     }, [bage]);
 
+    const addQty = (qty, qtyId) => {
+        if (qty < 1) return;
 
+        setBag(prev =>
+            prev.map(item =>
+                item.id == qtyId
+                    ? { ...item, Quantity: qty }
+                    : item
+            )
+        );
+    };
 
     const removeFromCart = (id) => {
         setBag(prev => prev.filter(item => item.id !== id));
@@ -58,7 +69,7 @@ function CartProvider({ children }) {
 
     return (
 
-        <CartContext.Provider value={{ bage, addToCart, removeFromCart }}>
+        <CartContext.Provider value={{ bage, addToCart, removeFromCart, addQty }}>
             <>
                 {showAlert && (
                     <div className="fixed top-20 right-5 z-50">
