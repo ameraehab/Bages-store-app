@@ -7,7 +7,8 @@
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* لمنع السكرول الأفقي */
+    overflow-x: hidden; 
+    background-color: #fffaf4;
 }
 
 .card:hover {
@@ -18,7 +19,7 @@ body {
 .card:active {
   transform: scale(0.93) rotateZ(1.7deg);
 }
-/* From Uiverse.io by e-coders */ 
+
 @keyframes ldio-4j5ay0xf86g {
  0% {
   opacity: 1
