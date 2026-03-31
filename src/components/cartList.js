@@ -18,7 +18,6 @@ function CartList() {
                                 <th className="px-4 py-2 border">Bag Model</th>
                                 <th className="px-4 py-2 border">Price</th>
                                 <th className="px-4 py-2 border">Quantity</th>
-                                <th className="px-4 py-2 border">Remove</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,7 +54,7 @@ function CartList() {
                                             onClick={() => removeFromCart(item.id)}
                                             className="text-red-500 hover:text-red-700 flex items-center gap-1"
                                         >
-                                            <MdRemoveShoppingCart size={20} /> Remove
+                                            <MdRemoveShoppingCart size={20} />
                                         </button>
                                     </td>
                                 </tr>
