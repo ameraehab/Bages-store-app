@@ -1,62 +1,69 @@
-import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import { FaSearch, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../Context/CartContext";
 
 function Navbar() {
     const { bage } = useContext(CartContext);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <nav className="border-b-2 border-black p-4 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 bg-[#fffaf4]">
-            {/* Left side: Navigation links */}
-            <ul className="flex gap-6 md:gap-10 items-center text-lg font-medium">
+        <nav className="sticky top-0 z-50 border-b border-[#351b00] shadow-sm p-4 flex justify-between items-center bg-[#fffaf4] relative">
+            <div className="md:hidden text-2xl cursor-pointer"
+                onClick={() => setMenuOpen(!menuOpen)}
+            >
+                {menuOpen ? <FaTimes /> : <FaBars />}
+            </div>
+
+            <ul className="hidden md:flex gap-8 items-center text-lg font-medium">
                 <li>
-                    <Link to="/" className="hover:text-[#351b00] transition-colors">
-                        Home
-                    </Link>
+                    <Link to="/" className="hover:text-[#351b00]">Home</Link>
                 </li>
                 <li>
-                    <Link to="/about" className="hover:text-[#351b00]  transition-colors">
-                        About
-                    </Link>
+                    <Link to="/about" className="hover:text-[#351b00]">About</Link>
                 </li>
                 <li className="hover:text-[#351b00] cursor-pointer">News</li>
             </ul>
-
 
             <div className="flex items-center">
                 <Link to="/">
                     <img
                         src="/images/logo.png"
                         alt="Mera Logo"
-                        className=" w-[60px] object-contain"
+                        className="w-[55px] object-contain"
                     />
                 </Link>
             </div>
-            {/* Right side: Cart and Search */}
-            <div className="flex items-center gap-4 md:gap-6">
-                {/* Cart */}
+
+            <div className="flex items-center gap-4">
                 <div className="relative">
                     <Link to="/cart">
-                        <FaShoppingCart className="text-2xl cursor-pointer  hover:text-[#995002]  transition-colors" />
+                        <FaShoppingCart className="text-2xl hover:text-[#995002]" />
                         {bage.length > 0 && (
-                            <span className="absolute -top-2 -right-2 bg-white  text-[#351b00]  text-xs px-1 rounded-full border-[2px] border-[#351b00] ">
+                            <span className="absolute -top-2 -right-2 bg-white text-[#351b00] text-xs px-1 rounded-full border-2 border-[#351b00]">
                                 {bage.length}
                             </span>
                         )}
                     </Link>
                 </div>
 
-                {/* Search */}
-                <div className="relative w-56 md:w-64">
+                <div className=" md:block relative w-56">
                     <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                     <input
                         type="search"
                         placeholder="Search"
-                        className="w-full rounded-xl border-2 border-gray-300 p-2 pl-10 outline-none focus:border-[#351b00] transition-colors"
+                        className="w-full rounded-xl border-2 border-white p-2 pl-10 outline-none focus:border-[#351b00]"
                     />
                 </div>
             </div>
+
+            {menuOpen && (
+                <div className="absolute z-50 top-full left-0 w-full bg-[#fffaf4] border-[#351b00] bg-opacity-90 border-t p-4 flex flex-col gap-4 md:hidden shadow-md">
+                    <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+                    <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+                    <span className="cursor-pointer">News</span>
+                </div>
+            )}
         </nav>
     );
 }
