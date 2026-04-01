@@ -116,7 +116,7 @@ function SelectedCollection() {
                         <button
                             className="absolute top-4 right-4 bg-orange-600 text-white p-2 rounded-full hover:bg-orange-700 transition-colors z-20"
                             title="Add to Cart"
-                            onClick={() => addToCart(bag)}
+                            onClick={() => addToCart(bag, bag.Quantity, bag.price)}
                         >
                             <FaCartPlus size={20} />
 
