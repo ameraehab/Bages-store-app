@@ -6,7 +6,6 @@ function CartProvider({ children }) {
     const [showAlert, setAlert] = useState(false);
     const [showAlertSucces, setAlertSucces] = useState(false);
     const [showAlertRemove, setAlertRemove] = useState(false);
-
     const [bage, setBag] = useState(() => {
         const savedCart = localStorage.getItem("cart");
         return savedCart ? JSON.parse(savedCart) : [];
@@ -29,6 +28,9 @@ function CartProvider({ children }) {
         );
     };
 
+
+
+
     const removeFromCart = (id) => {
         setBag(prev => prev.filter(item => item.id !== id));
         let removed = true;
@@ -41,7 +43,7 @@ function CartProvider({ children }) {
         }
 
     }
-    const addToCart = (item) => {
+    const addToCart = (item, qty, price) => {
         const exists = bage.some((bag) => bag.id === item.id);
 
         if (exists) {
@@ -65,11 +67,15 @@ function CartProvider({ children }) {
 
             return;
         }
+
     };
+    const total = bage.reduce((sum, item) => {
+        return sum + item.price * item.Quantity;
+    }, 0);
 
     return (
 
-        <CartContext.Provider value={{ bage, addToCart, removeFromCart, addQty }}>
+        <CartContext.Provider value={{ bage, addToCart, removeFromCart, addQty, total }}>
             <>
                 {showAlert && (
                     <div className="fixed top-20 right-5 z-50">
