@@ -2,6 +2,7 @@ import { FaSearch, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { CartContext } from "../Context/CartContext";
+import Search from "./search";
 
 function Navbar() {
     const { bage } = useContext(CartContext);
@@ -47,15 +48,9 @@ function Navbar() {
                     </Link>
                 </div>
 
-                <div className=" md:block relative w-56">
-                    <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                    <input
-                        type="search"
-                        placeholder="Search"
-                        className="w-full rounded-xl border-2 border-white p-2 pl-10 outline-none focus:border-[#351b00]"
-                    />
-                </div>
+                <Search />
             </div>
+
 
             {menuOpen && (
                 <div className="absolute z-50 top-full left-0 w-full bg-[#fffaf4] border-[#351b00] bg-opacity-90 border-t p-4 flex flex-col gap-4 md:hidden shadow-md">
