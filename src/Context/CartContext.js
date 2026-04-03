@@ -6,9 +6,11 @@ function CartProvider({ children }) {
     const [showAlert, setAlert] = useState(false);
     const [showAlertSucces, setAlertSucces] = useState(false);
     const [showAlertRemove, setAlertRemove] = useState(false);
+
     const [user, setUser] = useState(null);
 
     const [bage, setBag] = useState(() => {
+
         const savedCart = localStorage.getItem("cart");
         return savedCart ? JSON.parse(savedCart) : [];
     });
@@ -34,10 +36,9 @@ function CartProvider({ children }) {
                     : item
             )
         );
+
+
     };
-
-
-
 
     const removeFromCart = (id) => {
         setBag(prev => prev.filter(item => item.id !== id));
@@ -51,7 +52,7 @@ function CartProvider({ children }) {
         }
 
     }
-    const addToCart = (item, qty, price) => {
+    const addToCart = (item) => {
         const exists = bage.some((bag) => bag.id === item.id);
 
         if (exists) {
