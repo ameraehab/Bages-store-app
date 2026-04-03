@@ -75,10 +75,9 @@ function CartList() {
 
                                     <button
                                         onClick={() => removeFromCart(item.id)}
-                                        className="text-red-500 hover:text-red-700 mt-2"
+                                        className="text-red-500 hover:text-red-700 mt-2 text-md"
                                     >
-                                        <MdRemoveShoppingCart size={20} />
-                                    </button>
+                                        ✕                                    </button>
                                 </div>
                             </div>
                         ))}
