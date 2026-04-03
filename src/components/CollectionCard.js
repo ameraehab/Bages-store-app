@@ -1,16 +1,12 @@
 
 import { Link } from "react-router-dom";
-
+import { useContext } from "react";
+import { CartContext } from "../Context/CartContext";
 
 
 function CollectionCard({ showAll }) {
-    const collections = [
-        { id: 1, name: "Classic Elegance", image: "/images/collection1.jpg" },
-        { id: 2, name: "Evening Glam", image: "/images/collection2.jpg" },
-        { id: 3, name: "Urban Chic", image: "/images/collection3.jpg" },
-        { id: 4, name: "Travel Buddy", image: "/images/collection4.jpg" },
-        { id: 5, name: "Jeune Premier", image: "/images/collection5.jpg" },
-    ];
+    const { collections } = useContext(CartContext);
+
     const visibleCollection = showAll ? collections : collections.slice(0, 4);
 
     return (
