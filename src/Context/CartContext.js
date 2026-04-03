@@ -6,6 +6,8 @@ function CartProvider({ children }) {
     const [showAlert, setAlert] = useState(false);
     const [showAlertSucces, setAlertSucces] = useState(false);
     const [showAlertRemove, setAlertRemove] = useState(false);
+    const [user, setUser] = useState(null);
+
     const [bage, setBag] = useState(() => {
         const savedCart = localStorage.getItem("cart");
         return savedCart ? JSON.parse(savedCart) : [];
@@ -81,7 +83,7 @@ function CartProvider({ children }) {
 
     return (
 
-        <CartContext.Provider value={{ bage, addToCart, removeFromCart, addQty, total, collections }}>
+        <CartContext.Provider value={{ bage, addToCart, removeFromCart, addQty, total, collections, setUser, user }}>
             <>
                 {showAlert && (
                     <div className="fixed top-24 right-5 z-50">
