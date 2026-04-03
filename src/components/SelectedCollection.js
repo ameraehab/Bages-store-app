@@ -24,10 +24,8 @@ function ProductImage({ src, alt, className }) {
 
     return (
         <div className="relative">
-            {/* ✅ Spinner يظهر لحد ما الصورة تخلص تحميل */}
             {!isLoaded && !hasError && <ImageLoader />}
 
-            {/* ✅ أيقونة خطأ لو الصورة فشلت */}
             {hasError && (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded z-10">
                     <span className="text-4xl">🖼️</span>
@@ -125,7 +123,6 @@ function SelectedCollection() {
                 ))}
             </div>
 
-            {/* Pagination */}
             {totalPages > 1 && (
                 <div className="flex justify-center mt-6 gap-2">
                     {Array.from({ length: totalPages }, (_, i) => i + 1).map(
