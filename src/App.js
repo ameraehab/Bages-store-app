@@ -31,6 +31,8 @@ function App() {
             <Route path="/collection/:collectionName/:collectionNumber" element={<SelectedCollection />} />
 
             <Route path="/cart" element={<CartList />} />
+            <Route path="/collection/:collectionName/:collectionNumber" element={<SelectedCollection />} />
+
 
           </Routes>
 
