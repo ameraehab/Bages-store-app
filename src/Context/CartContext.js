@@ -10,7 +10,13 @@ function CartProvider({ children }) {
         const savedCart = localStorage.getItem("cart");
         return savedCart ? JSON.parse(savedCart) : [];
     });
-
+    const collections = [
+        { id: 1, name: "Classic Elegance", image: "/images/collection1.jpg" },
+        { id: 2, name: "Evening Glam", image: "/images/collection2.jpg" },
+        { id: 3, name: "Urban Chic", image: "/images/collection3.jpg" },
+        { id: 4, name: "Travel Buddy", image: "/images/collection4.jpg" },
+        { id: 5, name: "Jeune Premier", image: "/images/collection5.jpg" },
+    ];
 
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(bage));
@@ -75,10 +81,10 @@ function CartProvider({ children }) {
 
     return (
 
-        <CartContext.Provider value={{ bage, addToCart, removeFromCart, addQty, total }}>
+        <CartContext.Provider value={{ bage, addToCart, removeFromCart, addQty, total, collections }}>
             <>
                 {showAlert && (
-                    <div className="fixed top-20 right-5 z-50">
+                    <div className="fixed top-24 right-5 z-50">
 
 
 
@@ -93,7 +99,7 @@ function CartProvider({ children }) {
                     </div>
                 )}
                 {showAlertRemove && (
-                    <div className="fixed top-20 right-5 z-50">
+                    <div className="fixed top-24 right-5 z-50">
 
 
 
@@ -108,7 +114,7 @@ function CartProvider({ children }) {
                     </div>
                 )}
                 {showAlertSucces && (
-                    <div className="fixed top-20 right-5 z-50">
+                    <div className="fixed top-24 right-5 z-50">
 
 
 
