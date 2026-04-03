@@ -34,6 +34,7 @@ function App() {
             <Route path="/collection/:collectionName/:collectionNumber" element={<SelectedCollection />} />
 
 
+
           </Routes>
 
         </main>
