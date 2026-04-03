@@ -52,6 +52,7 @@ function SelectedCollection() {
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const { addToCart, showAlert } = useContext(CartContext);
+    const { setUser, user } = useContext(CartContext);
 
     const itemsPerPage = 10;
 
@@ -110,15 +111,19 @@ function SelectedCollection() {
 
                         <h3 className="font-semibold mt-2">{bag.title}</h3>
                         <p className="text-orange-700 font-bold">{bag.price}$</p>
-
-                        <button
+                        {user ? (<button
                             className="absolute top-4 right-4 bg-orange-600 text-white p-2 rounded-full hover:bg-orange-700 transition-colors z-20"
                             title="Add to Cart"
                             onClick={() => addToCart(bag, bag.Quantity, bag.price)}
                         >
                             <FaCartPlus size={20} />
 
-                        </button>
+                        </button>) : (
+                            <div className="absolute top-4 right-4 text-xs bg-orange-600 text-white p-2 rounded p-1">
+                                Login to add
+                            </div>
+                        )
+                        }
                     </div>
                 ))}
             </div>
