@@ -29,7 +29,9 @@ function Navbar() {
                 <li>
                     <Link to="/about" className="hover:text-[#351b00]">About</Link>
                 </li>
-                <li className="hover:text-[#351b00] cursor-pointer">News</li>
+                <li>
+                    <Link to="/news" className="hover:text-[#351b00]">News</Link>
+                </li>
             </ul>
 
             <div className="flex items-center">
