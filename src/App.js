@@ -8,6 +8,7 @@ import About from "./components/About";
 import CartProvider from "./Context/CartContext";
 import CartList from "./components/CartList";
 import Footer from "./components/Footer";
+import News from "./components/News";
 function App() {
 
   return (
@@ -27,6 +28,7 @@ function App() {
               }
             />
             <Route path="/about" element={<About />} />
+            <Route path="/news" element={<News />} />
 
             <Route path="/collection/:collectionName/:collectionNumber" element={<SelectedCollection />} />
 
