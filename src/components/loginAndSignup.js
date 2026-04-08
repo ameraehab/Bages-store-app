@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 function LoginAndSignup({ isOpen, onClose, setUser }) {
-    const [mode, setMode] = useState("login"); // login | signup
+    const [mode, setMode] = useState("login");
 
     const [formData, setFormData] = useState({
         name: "",
@@ -71,7 +71,6 @@ function LoginAndSignup({ isOpen, onClose, setUser }) {
                         />
                     )}
 
-                    {/* Email */}
                     <input
                         type="email"
                         name="email"
@@ -82,7 +81,6 @@ function LoginAndSignup({ isOpen, onClose, setUser }) {
                         required
                     />
 
-                    {/* Password */}
                     <input
                         type="password"
                         name="password"
@@ -93,7 +91,6 @@ function LoginAndSignup({ isOpen, onClose, setUser }) {
                         required
                     />
 
-                    {/* Button */}
                     <button
                         type="submit"
                         className="w-full h-11 rounded-full bg-orange-700 hover:bg-orange-600 text-white transition"
@@ -102,7 +99,6 @@ function LoginAndSignup({ isOpen, onClose, setUser }) {
                     </button>
                 </form>
 
-                {/* Switch */}
                 <p
                     onClick={() =>
                         setMode((prev) => (prev === "login" ? "signup" : "login"))
