@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import bages from "/bags.json";
 import { FaCartPlus } from "react-icons/fa6";
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
@@ -51,17 +50,30 @@ function SelectedCollection() {
     const { collectionName, collectionNumber } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
+    const [bages, setBages] = useState([]);
     const { addToCart } = useContext(CartContext);
     const { user } = useContext(CartContext);
 
     const itemsPerPage = 10;
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoading(false);
-        }, 500);
-        return () => clearTimeout(timer);
-    }, [collectionNumber]);
+        setLoading(true); // يبدأ اللودر
+        fetch('/bags.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load bags.json');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setBages(data);
+                setLoading(false); // يوقف اللودر بعد ما البيانات تجيب
+            })
+            .catch(error => {
+                console.error('Error loading bags:', error);
+                setLoading(false); // يوقف اللودر حتى لو فيه خطأ
+            });
+    }, [collectionNumber]); // يعيد التحميل لو تغيرت الكوليكشن
 
     const collectionBags = bages.filter(
         (bag) => bag.collectionId === collectionNumber
@@ -71,13 +83,15 @@ function SelectedCollection() {
     const currentBags = collectionBags.slice(startIndex, startIndex + itemsPerPage);
     const totalPages = Math.ceil(collectionBags.length / itemsPerPage);
 
+    // اللودر الرئيسي (بيظهر عقبال ما البيانات تجيب)
     if (loading) {
         return (
-            <div className="p-5 min-h-[400px] flex items-center justify-center  h-screen">
-                <div className="loadingio-spinner-spinner-977el9wwy2v"><div className="ldio-4j5ay0xf86g">
-                    <div></div><div></div><div></div><div></div><div></div><div></div>
-                    <div></div><div></div><div></div><div></div><div></div><div></div>
-                </div>
+            <div className="p-5 min-h-[400px] flex items-center justify-center h-screen">
+                <div className="loadingio-spinner-spinner-977el9wwy2v">
+                    <div className="ldio-4j5ay0xf86g">
+                        <div></div><div></div><div></div><div></div><div></div><div></div>
+                        <div></div><div></div><div></div><div></div><div></div><div></div>
+                    </div>
                 </div>
             </div>
         );
@@ -106,24 +120,24 @@ function SelectedCollection() {
                         <ProductImage
                             src={bag.image}
                             alt={bag.title}
-                            className="w-80 h-52 object-center  mb-2 rounded "
+                            className="w-80 h-52 object-center mb-2 rounded"
                         />
 
                         <h3 className="font-semibold mt-2">{bag.title}</h3>
                         <p className="text-orange-700 font-bold">{bag.price}$</p>
-                        {user ? (<button
-                            className="absolute top-4 right-4 bg-orange-600 text-white p-2 rounded-full hover:bg-orange-700 transition-colors z-20"
-                            title="Add to Cart"
-                            onClick={() => addToCart(bag, bag.Quantity, bag.price)}
-                        >
-                            <FaCartPlus size={20} />
-
-                        </button>) : (
+                        {user ? (
+                            <button
+                                className="absolute top-4 right-4 bg-orange-600 text-white p-2 rounded-full hover:bg-orange-700 transition-colors z-20"
+                                title="Add to Cart"
+                                onClick={() => addToCart(bag, bag.Quantity, bag.price)}
+                            >
+                                <FaCartPlus size={20} />
+                            </button>
+                        ) : (
                             <div className="absolute top-4 right-4 text-xs bg-orange-600 text-white p-2 rounded p-1">
                                 Login to add
                             </div>
-                        )
-                        }
+                        )}
                     </div>
                 ))}
             </div>
@@ -146,9 +160,7 @@ function SelectedCollection() {
                     )}
                 </div>
             )}
-
         </div>
-
     );
 }
 
