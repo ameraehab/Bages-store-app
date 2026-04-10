@@ -105,7 +105,7 @@ function News() {
                         <ProductImage
                             src={item.image}
                             alt={item.title}
-                            className="w-full h-52 object-center mb-2 rounded"
+                            className="w-full h-96 object-center mb-2 rounded"
                         />
 
                         <h3 className="font-semibold mt-2">{item.title}</h3>
@@ -115,7 +115,7 @@ function News() {
                                 className="absolute top-4 right-4 bg-orange-600 text-white p-2 rounded-full hover:bg-orange-700 transition-colors z-20"
                                 title="Add to Cart"
                                 onClick={(e) => {
-                                    e.stopPropagation(); // عشان لما تضغطي على الزر موديكش للكوليكشن
+                                    e.stopPropagation();
                                     addToCart(item, item.Quantity, item.price);
                                 }}
                             >
