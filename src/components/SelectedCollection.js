@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import bages from "../bags.json";
+import bages from "/bags.json";
 import { FaCartPlus } from "react-icons/fa6";
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
