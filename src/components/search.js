@@ -43,12 +43,10 @@ function Search() {
         setShowResults(true);
     }, [search, bages]);
 
-    // التعامل مع الضغط برا الـ Search
     useEffect(() => {
         function handleClickOutside(event) {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
                 setShowResults(false);
-                // متحذفيش النص هنا عشان يفضل ظاهر
             }
         }
 
@@ -58,12 +56,11 @@ function Search() {
         };
     }, []);
 
-    // لما يختار المنتج
     const handleSelectProduct = (item, collection) => {
-        setSearch(item.title); // اسم المنتج يظهر في حقل البحث
-        setShowResults(false); // الليست تقفل
+        setSearch(item.title);
+        setShowResults(false);
 
-        // التوجيه للصفحة بعد ما الاسم يظهر
+
         if (collection) {
             navigate(`/collection/${collection.name}/${collection.id}`);
         }
