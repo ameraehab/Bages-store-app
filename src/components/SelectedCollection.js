@@ -76,7 +76,7 @@ function SelectedCollection() {
     }, [collectionNumber]); // يعيد التحميل لو تغيرت الكوليكشن
 
     const collectionBags = bages.filter(
-        (bag) => bag.collectionId === collectionNumber
+        (bag) => String(bag.collectionId) === String(collectionNumber)
     );
 
     const startIndex = (currentPage - 1) * itemsPerPage;
