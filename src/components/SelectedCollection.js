@@ -86,7 +86,7 @@ function SelectedCollection() {
     if (collectionBags.length === 0) {
         return (
             <div className="p-5 text-center text-gray-500">
-                <p className="text-lg">لا توجد شنط في هذا الكوليكشن 😕</p>
+                <p className="text-lg">There are no bags in this collection 😕</p>
             </div>
         );
     }
