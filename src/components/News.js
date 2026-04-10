@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../Context/CartContext";
 
 function News() {
     const [bags, setBags] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+    const { collections } = useContext(CartContext);
 
     useEffect(() => {
         fetch('/bags.json')
@@ -21,6 +26,14 @@ function News() {
                 setLoading(false);
             });
     }, []);
+
+    // دالة للتوجيه لصفحة الكوليكشن
+    const handleBagClick = (item) => {
+        const collection = collections.find(c => c.id === item.collectionId);
+        if (collection) {
+            navigate(`/collection/${collection.name}/${collection.id}`);
+        }
+    };
 
     // اللودر عقبال ما البيانات تجيب
     if (loading) {
@@ -54,7 +67,8 @@ function News() {
                     newsBages.map((item) => (
                         <div
                             key={item.id}
-                            className="shadow p-2 hover:shadow-lg hover:scale-105 transition-transform duration-300 relative"
+                            className="shadow p-2 hover:shadow-lg hover:scale-105 transition-transform duration-300 relative cursor-pointer"
+                            onClick={() => handleBagClick(item)}
                         >
                             <img
                                 src={item.image}
