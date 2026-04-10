@@ -22,7 +22,9 @@ function Footer() {
                     <h6 className="text-lg font-semibold mb-4">Company</h6>
                     <ul className="space-y-3 text-sm">
                         <li className="hover:translate-x-1 hover:text-black transition duration-300 cursor-pointer">
-                            About Us
+
+                            <Link to="/about">About Us</Link>
+
                         </li>
                         <li className="hover:translate-x-1 hover:text-black transition duration-300 cursor-pointer">
                             Contact
