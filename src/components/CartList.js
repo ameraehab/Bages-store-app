@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
-import { MdRemoveShoppingCart } from "react-icons/md";
 
 function CartList() {
     const { bage, removeFromCart, addQty } = useContext(CartContext);
