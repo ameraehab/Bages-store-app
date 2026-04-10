@@ -1,5 +1,5 @@
 import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
-import { Link, Links } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { CartContext } from "../Context/CartContext";
 import Search from "./search";
@@ -9,7 +9,6 @@ function Navbar() {
     const { bage, setUser, user } = useContext(CartContext);
     const [menuOpen, setMenuOpen] = useState(false);
     const [open, setOpen] = useState(false);
-    // 👇 logout function
     const handleLogout = () => {
         setUser(null);
         localStorage.removeItem("user");
