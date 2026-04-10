@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
 import { FaCartPlus } from "react-icons/fa6";
 
-// نفس دالة ImageLoader من SelectedCollection
 function ImageLoader() {
     return (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded z-10">
@@ -18,7 +16,6 @@ function ImageLoader() {
     );
 }
 
-// نفس دالة ProductImage من SelectedCollection
 function ProductImage({ src, alt, className }) {
     const [isLoaded, setIsLoaded] = useState(false);
     const [hasError, setHasError] = useState(false);
@@ -51,8 +48,7 @@ function ProductImage({ src, alt, className }) {
 function News() {
     const [bags, setBags] = useState([]);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
-    const { collections, addToCart, user } = useContext(CartContext);
+    const { addToCart, user } = useContext(CartContext);
 
     useEffect(() => {
         fetch('/bags.json')
@@ -76,7 +72,6 @@ function News() {
 
     const newsBages = bags.filter(b => b.id % 2 === 0);
 
-    // اللودر الرئيسي
     if (loading) {
         return (
             <div className="p-5 min-h-[400px] flex items-center justify-center h-screen">
