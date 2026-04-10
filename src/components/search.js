@@ -1,5 +1,4 @@
 import { FaSearch } from "react-icons/fa";
-import bages from "../bags.json";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -7,34 +6,49 @@ import { CartContext } from "../Context/CartContext";
 
 function Search() {
     const { collections } = useContext(CartContext);
-
     const [search, setSearch] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    const [bages, setBages] = useState([]);
 
+    // جلب البيانات عند تحميل المكون
     useEffect(() => {
-        if (search.trim() === "") {
+        fetch('/bags.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load bags.json');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setBages(data);
+            })
+            .catch(error => {
+                console.error('Error loading bags:', error);
+            });
+    }, []);
+
+    // البحث في المنتجات
+    useEffect(() => {
+        if (search.trim() === "" || bages.length === 0) {
             setSearchResults([]);
             return;
         }
 
         const results = bages.filter((item) =>
             item.title.toLowerCase().startsWith(search.toLowerCase())
-
         );
         setSearchResults(results);
-    }, [search]);
+    }, [search, bages]);
+
     return (
         <>
-
-            <div className=" md:block relative w-56">
-
+            <div className="md:block relative w-56">
                 <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
                     type="search"
                     placeholder="Search"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-
                     className="w-full rounded-xl border-2 border-white p-2 pl-10 outline-none focus:border-[#351b00]"
                 />
                 {searchResults.length > 0 && (
@@ -61,20 +75,11 @@ function Search() {
                                 </div>
                             );
                         })}
-
                     </div>
                 )}
-
-
-
-
-
             </div>
-
         </>
     )
-
 }
-
 
 export default Search;
