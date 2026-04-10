@@ -64,7 +64,7 @@ function SelectedCollection() {
     }, [collectionNumber]);
 
     const collectionBags = bages.filter(
-        (bag) => bag.collectionId == collectionNumber
+        (bag) => bag.collectionId === collectionNumber
     );
 
     const startIndex = (currentPage - 1) * itemsPerPage;
