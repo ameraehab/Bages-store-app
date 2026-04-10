@@ -51,8 +51,8 @@ function SelectedCollection() {
     const { collectionName, collectionNumber } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
-    const { addToCart, showAlert } = useContext(CartContext);
-    const { setUser, user } = useContext(CartContext);
+    const { addToCart } = useContext(CartContext);
+    const { user } = useContext(CartContext);
 
     const itemsPerPage = 10;
 
