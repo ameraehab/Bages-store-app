@@ -1,7 +1,7 @@
 import bags from "../bags.json";
 
 function News() {
-    const newsBages = bags.filter(b => b.id % 2 == 0)
+    const newsBages = bags.filter(b => b.id % 2 === 0)
     return (
         <>
             <p className="p-1 mt-8 text-xl font-semibold text-[#351b00] text-center">{newsBages.length} New Bag</p>
