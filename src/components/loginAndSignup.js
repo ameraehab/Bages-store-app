@@ -30,7 +30,7 @@ function LoginAndSignup({ isOpen, onClose, setUser }) {
         if (savedUser) {
             setUser(JSON.parse(savedUser));
         }
-    }, []);
+    }, [setUser]);
 
 
 
