@@ -31,7 +31,7 @@ function CartProvider({ children }) {
 
         setBag(prev =>
             prev.map(item =>
-                item.id == qtyId
+                item.id === qtyId
                     ? { ...item, Quantity: qty }
                     : item
             )
