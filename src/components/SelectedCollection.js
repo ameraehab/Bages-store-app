@@ -67,13 +67,13 @@ function SelectedCollection() {
             })
             .then(data => {
                 setBages(data);
-                setLoading(false); // يوقف اللودر بعد ما البيانات تجيب
+                setLoading(false);
             })
             .catch(error => {
                 console.error('Error loading bags:', error);
-                setLoading(false); // يوقف اللودر حتى لو فيه خطأ
+                setLoading(false);
             });
-    }, [collectionNumber]); // يعيد التحميل لو تغيرت الكوليكشن
+    }, [collectionNumber]);
 
     const collectionBags = bages.filter(
         (bag) => String(bag.collectionId) === String(collectionNumber)
@@ -83,7 +83,6 @@ function SelectedCollection() {
     const currentBags = collectionBags.slice(startIndex, startIndex + itemsPerPage);
     const totalPages = Math.ceil(collectionBags.length / itemsPerPage);
 
-    // اللودر الرئيسي (بيظهر عقبال ما البيانات تجيب)
     if (loading) {
         return (
             <div className="p-5 min-h-[400px] flex items-center justify-center h-screen">
