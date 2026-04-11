@@ -72,18 +72,7 @@ function News() {
 
     const newsBages = bags.filter(b => b.id % 2 === 0);
 
-    if (loading) {
-        return (
-            <div className="p-5 min-h-[400px] flex items-center justify-center h-screen">
-                <div className="loadingio-spinner-spinner-977el9wwy2v">
-                    <div className="ldio-4j5ay0xf86g">
-                        <div></div><div></div><div></div><div></div><div></div><div></div>
-                        <div></div><div></div><div></div><div></div><div></div><div></div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+
 
     if (newsBages.length === 0) {
         return (
@@ -96,39 +85,52 @@ function News() {
     return (
         <>
             <p className="p-1 mt-8 text-xl font-semibold text-[#351b00] text-center">{newsBages.length} New Bag</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-8">
-                {newsBages.map((item) => (
-                    <div
-                        key={item.id}
-                        className="shadow rounded p-3 hover:shadow-lg hover:scale-105 transition-transform duration-300 relative cursor-pointer"
-                    >
-                        <ProductImage
-                            src={item.image}
-                            alt={item.title}
-                            className="w-full h-96 object-center mb-2 rounded"
-                        />
-
-                        <h3 className="font-semibold mt-2">{item.title}</h3>
-                        <p className="text-orange-700 font-bold">{item.price}$</p>
-                        {user ? (
-                            <button
-                                className="absolute top-4 right-4 bg-orange-600 text-white p-2 rounded-full hover:bg-orange-700 transition-colors z-20"
-                                title="Add to Cart"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    addToCart(item, item.Quantity, item.price);
-                                }}
-                            >
-                                <FaCartPlus size={20} />
-                            </button>
-                        ) : (
-                            <div className="absolute top-4 right-4 text-xs bg-orange-600 text-white p-2 rounded p-1">
-                                Login to add
-                            </div>
-                        )}
+            {
+                loading ? (<div className="p-5 min-h-[400px] flex items-center justify-center h-screen">
+                    <div className="loadingio-spinner-spinner-977el9wwy2v">
+                        <div className="ldio-4j5ay0xf86g">
+                            <div></div><div></div><div></div><div></div><div></div><div></div>
+                            <div></div><div></div><div></div><div></div><div></div><div></div>
+                        </div>
                     </div>
-                ))}
-            </div>
+                </div>) : (
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-8">
+                        {newsBages.map((item) => (
+                            <div
+                                key={item.id}
+                                className="shadow rounded p-3 hover:shadow-lg hover:scale-105 transition-transform duration-300 relative cursor-pointer"
+                            >
+                                <ProductImage
+                                    src={item.image}
+                                    alt={item.title}
+                                    className="w-full h-96 object-center mb-2 rounded"
+                                />
+
+                                <h3 className="font-semibold mt-2">{item.title}</h3>
+                                <p className="text-orange-700 font-bold">{item.price}$</p>
+                                {user ? (
+                                    <button
+                                        className="absolute top-4 right-4 bg-orange-600 text-white p-2 rounded-full hover:bg-orange-700 transition-colors z-20"
+                                        title="Add to Cart"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            addToCart(item, item.Quantity, item.price);
+                                        }}
+                                    >
+                                        <FaCartPlus size={20} />
+                                    </button>
+                                ) : (
+                                    <div className="absolute top-4 right-4 text-xs bg-orange-600 text-white p-2 rounded p-1">
+                                        Login to add
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                )
+            }
+
         </>
     );
 }
