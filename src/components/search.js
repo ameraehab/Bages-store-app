@@ -63,6 +63,7 @@ function Search() {
 
         if (collection) {
             navigate(`/collection/${collection.name}/${collection.id}`);
+            setSearch("");
         }
     };
 
